@@ -10,19 +10,19 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppRoute, AuthStatus } from '../../configApp';
 import RoutePrivate from '../route-private/route-private';
 
-function App({countSnippet}: appPropType): JSX.Element {
+function App({countSnippet, offers}: appPropType): JSX.Element {
 
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <PageMain countSnippet={countSnippet}/>
+          <PageMain countSnippet={countSnippet} offers={offers}/>
         </Route>
         <Route path={AppRoute.Login} exact>
           <PageSing />
         </Route>
-        <RoutePrivate path={AppRoute.Fav} exact authStatus={AuthStatus.NoAuth} render={()=> <PageFavorites />} >
+        <RoutePrivate path={AppRoute.Fav} exact authStatus={AuthStatus.Auth} render={()=> <PageFavorites />} >
 
         </RoutePrivate>
 

@@ -1,9 +1,15 @@
 
-import Snippet from '../snippet/snippet';
 import { appPropType } from '../..';
 import Header from '../header/header';
 import DecoHeader from '../deco-header/deco-header';
+import { useState } from 'react';
+
+import { offers } from '../../mocks/offers';
+import SnippetList from '../snippet-list/snippet-list';
+import { OffersType } from '../../types/offers';
 function PageMain({countSnippet}:appPropType): JSX.Element {
+  const [offersList] = useState<OffersType>(offers);
+
   return (
     <>
       <DecoHeader/>
@@ -131,7 +137,8 @@ function PageMain({countSnippet}:appPropType): JSX.Element {
                   </ul>
                 </form>
                 <div className='cities__places-list places__list tabs__content'>
-                  {[...Array(countSnippet)].map((i)=><Snippet key={i}/>)}
+
+                  {<SnippetList offersList={offersList}/>}
 
                 </div>
               </section>

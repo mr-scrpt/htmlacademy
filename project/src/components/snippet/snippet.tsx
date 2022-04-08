@@ -1,4 +1,12 @@
-function Snippet(): JSX.Element {
+import { Link } from 'react-router-dom';
+import { OfferType } from '../../types/offers';
+
+type offersProps = {
+  offer: OfferType,
+  // key: OfferIdType
+}
+function Snippet({offer}:  offersProps): JSX.Element {
+
   return (
     <article className='cities__place-card place-card'>
       <div className='place-card__mark'>
@@ -7,7 +15,8 @@ function Snippet(): JSX.Element {
         </span>
       </div>
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='#'>
+        <Link to={`/room/${offer.id}`}>
+
           <img
             className='place-card__image'
             src='img/apartment-01.jpg'
@@ -15,13 +24,14 @@ function Snippet(): JSX.Element {
             height='200'
             alt=""
           />
-        </a>
+        </Link>
+
       </div>
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
             <b className='place-card__price-value'>
-					&euro;120
+					&euro;{offer.price}
             </b>
             <span className='place-card__price-text'>
 					&#47;&nbsp;night
@@ -59,15 +69,11 @@ function Snippet(): JSX.Element {
         </div>
         <h2 className='place-card__name'>
           <a href='#'>
-					Beautiful
-					&amp;
-					luxurious
-					apartment at
-					great location
+            {offer.name}
           </a>
         </h2>
         <p className='place-card__type'>
-				Apartment
+          {offer.type}
         </p>
       </div>
     </article>
